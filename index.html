@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse move project</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #111;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        span{
+            position: absolute;
+            background-image: url("shape.png");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* height: 40px;
+            width: 40px; */
+            filter: drop-shadow(0 0 15px rgba(0,0,0,.6));
+
+
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            animation-name: move;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes move {
+            0%{
+                opacity: 1;
+            }
+            100%{
+                transform: translate(0px) rotate(600deg);
+                opacity: 0;
+            }
+        }
+
+        #cordinate{
+            width: 100%;
+            background-color: aliceblue;
+            position: relative;
+            bottom: -90%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- <h1 id="cordinate"></h1> -->
+
+    <script>
+        document.addEventListener('mousemove', function(e){
+            var body = document.querySelector("body");
+            var shape = document.createElement("span");
+            // var cord = document.querySelector("#cordinate");
+            var x = e.clientX;
+            var y = e.clientY;
+            
+            shape.style.left = x + "px";
+            shape.style.top = y + "px";
+
+            var size = Math.random() * 80;
+            var rotateVal = Math.random() * 360;
+
+            shape.style.width = 10 + size + "px";
+            shape.style.height = 10 + size + "px";
+            shape.style.transform = " rotate("+rotateVal+"deg)";
+
+
+            // cord.innerHTML = "X: " +x +"Y: "+y ;
+
+            // body.append(shape);
+            body.appendChild(shape);
+            setTimeout(function(){
+                shape.remove()
+            },800)
+
+
+        })
+
+    </script>
+
+</body>
+</html>
